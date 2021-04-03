@@ -57,7 +57,7 @@ app.get("/", function(req, res) {
 
 });
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
 
 //api key: c556a1ebb233461d254c1d7a67b67f44-us1
 //unoque code : 1fa3acabfe
