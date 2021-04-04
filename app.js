@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const request = require('request')
 const https = require("https");
+require('dotenv').config();
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,11 +27,13 @@ app.post("/", function(req, res) {
 
     const jsonData = JSON.stringify(data);
 
+    const apiKey = process.env.API_KEY;
+
     const url = "https://us1.api.mailchimp.com/3.0/lists/1fa3acabfe";
 
     const options = {
         method: "POST",
-        auth: "uppi:c556a1ebb233461d254c1d7a67b67f44-us1"
+        auth: apiKey
     }
 
     const request = https.request(url, options, function(response) {
@@ -61,6 +64,3 @@ app.get("/", function(req, res) {
 app.listen(process.env.PORT || 3000, function() {
     console.log("server is up and running");
 });
-
-//api key: c556a1ebb233461d254c1d7a67b67f44-us1
-//unoque code : 1fa3acabfe
